@@ -47,32 +47,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-      jcenter()
-      mavenLocal()
-      
-      mavenCentral()
-      maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local' }
-      maven {
-          url 'https://eis.jfrog.io/eis/libs-snapshot-local'
-          credentials {
-              username = project.artifactory_user
-              password = project.artifactory_password
-          }
-      }
-      maven {
-          url 'https://eis.jfrog.io/eis/libs-release-local'
-          credentials {
-              username = project.artifactory_user
-              password = project.artifactory_password
-          }
-      }
-      maven {
-        url 'https://eis.jfrog.io/eis/plugins-release'
-        credentials {
-            username = project.artifactory_user
-            password = project.artifactory_password
-        }
-    }
+    jcenter()
 }
 
 
