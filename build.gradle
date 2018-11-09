@@ -2,19 +2,9 @@ buildscript {
 	ext {
 		springBootVersion = '2.0.6.RELEASE'
         wsdl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL"
-        javaSourcePath = "$projectDir/src/main/java"
         pckg = "com.example.demo.soap.countries"
 	}
 	repositories {
-          mavenCentral()
-          maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local' }
-          maven {
-              url 'https://eis.jfrog.io/eis/libs-snapshot-local'
-              credentials {
-                  username = project.artifactory_user
-                  password = project.artifactory_password
-              }
-          }
           maven {
               url 'https://eis.jfrog.io/eis/libs-release-local'
               credentials {
@@ -32,8 +22,12 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'com.ebsco.ebsconext.platform.shared.plugins:wsdl2java-spring-annotator:0.0.1'
+        classpath 'com.ebsco.ebsconext.platform.shared.plugins:wsdl2java-spring-annotator:1.0.0'
 	}
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_10
+        targetCompatibility = JavaVersion.VERSION_1_10
+    }
 }
 
 apply plugin: 'java'
@@ -44,16 +38,17 @@ apply plugin: 'com.platform.shared.wsdltojava-annotator'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = '1.11'
+
 
 repositories {
     jcenter()
 }
 
-
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
 
